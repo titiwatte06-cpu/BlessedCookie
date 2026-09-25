@@ -32,13 +32,13 @@ export default function Navigation() {
   </div>
 
   {/* กล่องสีขาวลอย - อ้างอิงจาก header ทั้งก้อน */}
-  <div className="absolute left-1/2 top-0 w-[25%] max-w-1xl -translate-x-1/2 rounded bg-white px-4 py-0 shadow-lg">
-    <nav aria-label="เมนูหลัก" className="flex flex-nowrap items-center justify-around gap-0">
+  <div className="absolute left-1/2 top-0 w-fit -translate-x-1/2 rounded bg-white px-4 py-5 shadow-lg sm:py-7">
+    <nav aria-label="เมนูหลัก" className="flex  items-center justify-center">
     
     <img
             src="/image/blessedcookie-logo.png"
             alt="Blessed Cookie"
-            className="h-30 w-70 items-center"
+            className="h-20 w-auto object-contain"
           />
     </nav>
     
