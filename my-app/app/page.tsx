@@ -1,5 +1,29 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
+
+const cookieBoxes = [
+  { id: "oatmeal", label: "Oatmeal", image: "/image/oatmeal-cookie.png", imageClass: "max-h-[92%] max-w-[92%]" },
+  { id: "chocolate", label: "Chocolate", image: "/image/chocolate-cookie.png", imageClass: "relative -top-2 max-h-[78%] max-w-[78%]" },
+  { id: "almond", label: "Almond", image: "/image/almond-butter-cookie.png", imageClass: "relative -top-4 max-h-[78%] max-w-[78%]" },
+];
+
 export default function Home() {
+  const [selectedCookie, setSelectedCookie] = useState("oatmeal");
+  const activeCookie = cookieBoxes.find((cookie) => cookie.id === selectedCookie) ?? cookieBoxes[0];
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setSelectedCookie((currentCookie) => {
+        const currentIndex = cookieBoxes.findIndex((cookie) => cookie.id === currentCookie);
+        return cookieBoxes[(currentIndex + 1) % cookieBoxes.length].id;
+      });
+    }, 3500);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="overflow-hidden">
       <section className="relative overflow-hidden px-6 py-20 sm:py-28">
@@ -14,13 +38,14 @@ export default function Home() {
               <a href="/about" className="rounded-full border border-[#fffaf2]/70 px-6 py-3 font-semibold text-[#fffaf2] transition-colors hover:bg-[#fffaf2]/15">เรื่องราวของเรา</a>
             </div>
           </div>
-          <div className="relative mx-auto grid size-72 place-items-center rounded-[48%]  shadow-xl shadow-[#9d6844]/15 sm:size-96">
-          <div className="text-center">
-            <div className="text-8xl">
-              <img src="/image/oatmeal-cookie.png"/>
-            </div>
-
-            
+          <div className="mx-auto flex flex-col items-center">
+            <div className="relative grid size-80 place-items-center rounded-[48%] bg-[#fffaf2] shadow-xl shadow-[#9d6844]/15 sm:size-[28rem]">
+              <img
+                key={activeCookie.id}
+                src={activeCookie.image}
+                alt={`${activeCookie.label} cookie box`}
+                className={`animate-cookie-swap object-contain ${activeCookie.imageClass}`}
+              />
             </div>
           </div>
         </div>
