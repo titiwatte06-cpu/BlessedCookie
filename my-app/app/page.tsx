@@ -4,9 +4,9 @@
 import { useEffect, useState } from "react";
 
 const cookieBoxes = [
-  { id: "oatmeal", label: "Oatmeal", image: "/image/oatmeal-cookie.png", imageClass: "max-h-[92%] max-w-[92%]" },
-  { id: "chocolate", label: "Chocolate", image: "/image/chocolate-cookie.png", imageClass: "relative -top-2 max-h-[78%] max-w-[78%]" },
-  { id: "almond", label: "Almond", image: "/image/almond-butter-cookie.png", imageClass: "relative -top-4 max-h-[78%] max-w-[78%]" },
+  { id: "oatmeal", label: "Oatmeal", image: "/image/oatmeal-cookie.png", imageClass: "h-64 w-auto sm:h-[25rem]" },
+  { id: "chocolate", label: "Chocolate", image: "/image/chocolate-cookie.png", imageClass: "h-64 w-auto sm:h-[22rem]" },
+  { id: "almond", label: "Almond", image: "/image/almond-butter-cookie.png", imageClass: "h-64 w-auto sm:h-[22rem]" },
 ];
 
 export default function Home() {
