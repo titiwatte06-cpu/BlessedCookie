@@ -1,12 +1,40 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
+
+const cookieBoxes = [
+  { id: "oatmeal", label: "Oatmeal", image: "/image/oatmeal-cookie.png", imageClass: "h-64 w-auto sm:h-[25rem]" },
+  { id: "chocolate", label: "Chocolate", image: "/image/chocolate-cookie.png", imageClass: "h-64 w-auto sm:h-[22rem]" },
+  { id: "almond", label: "Almond", image: "/image/almond-butter-cookie.png", imageClass: "h-64 w-auto sm:h-[22rem]" },
+];
+
 export default function Home() {
+  const [selectedCookie, setSelectedCookie] = useState("oatmeal");
+  const activeCookie = cookieBoxes.find((cookie) => cookie.id === selectedCookie) ?? cookieBoxes[0];
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setSelectedCookie((currentCookie) => {
+        const currentIndex = cookieBoxes.findIndex((cookie) => cookie.id === currentCookie);
+        return cookieBoxes[(currentIndex + 1) % cookieBoxes.length].id;
+      });
+    }, 3500);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="overflow-hidden">
       <section className="relative overflow-hidden px-6 py-20 sm:py-28">
         <div className="absolute inset-0 bg-[url('/image/wallpaper-cookie.png')] bg-cover bg-center" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="animate-fade-up">
-            <p className="mb-5 text-sm font-bold uppercase tracking-[0.25em] text-[#f5c96a] drop-shadow-[0_3px_4px_rgba(16,8,5,1)]">Baked with a blessing</p>
+            <img
+              src="/image/Blessed-cookie-home.png"
+              alt="Blessed Cookie Home"
+              className="mb-5 h-12 w-auto drop-shadow-[0_3px_4px_rgba(16,8,5,1)]"
+            />
             <h1 className="max-w-xl font-serif text-5xl font-bold leading-[1.05] tracking-tight text-[#fffaf2] drop-shadow-[0_5px_6px_rgba(16,8,5,1)] sm:text-7xl">คุกกี้ชิ้นเล็กๆ <span className="text-[#f5c96a]">ความสุขชิ้นใหญ่</span></h1>
             <p className="mt-6 max-w-lg text-lg font-medium leading-8 text-[#fffaf2] drop-shadow-[0_3px_4px_rgba(16,8,5,1)]">คุกกี้โฮมเมดอบสดใหม่ หอมเนยทุกคำ ตั้งใจทำเหมือนอบให้คนที่เรารัก</p>
             <div className="mt-9 flex flex-wrap gap-4">
@@ -14,13 +42,14 @@ export default function Home() {
               <a href="/about" className="rounded-full border border-[#fffaf2]/70 px-6 py-3 font-semibold text-[#fffaf2] transition-colors hover:bg-[#fffaf2]/15">เรื่องราวของเรา</a>
             </div>
           </div>
-          <div className="relative mx-auto grid size-72 place-items-center rounded-[48%]  shadow-xl shadow-[#9d6844]/15 sm:size-96">
-          <div className="text-center">
-            <div className="text-8xl">
-              <img src="/image/oatmeal-cookie.png"/>
-            </div>
-
-            
+          <div className="mx-auto flex flex-col items-center">
+            <div className="relative grid size-80 place-items-center rounded-[48%] bg-[#fffaf2] shadow-xl shadow-[#9d6844]/15 sm:size-[28rem]">
+              <img
+                key={activeCookie.id}
+                src={activeCookie.image}
+                alt={`${activeCookie.label} cookie box`}
+                className={`animate-cookie-swap object-contain ${activeCookie.imageClass}`}
+              />
             </div>
           </div>
         </div>
