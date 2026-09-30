@@ -29,7 +29,7 @@ export default function Home() {
       <section className="relative overflow-hidden px-6 py-20 sm:py-28">
         <div className="absolute inset-0 bg-[url('/image/wallpaper-cookie.png')] bg-cover bg-center" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="animate-fade-up">
+          <div className="animate-fade-up rounded-[2rem] border border-[#fffaf2]/25 bg-[#3d241c]/65 p-6 shadow-xl shadow-[#24140f]/20 backdrop-blur-md sm:p-8">
             <img
               src="/image/Blessed-cookie-home.png"
               alt="Blessed Cookie Home"
@@ -43,7 +43,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mx-auto flex flex-col items-center">
-            <div className="relative grid size-80 place-items-center rounded-[48%] bg-[#fffaf2] shadow-xl shadow-[#9d6844]/15 sm:size-[28rem]">
+            <div className="relative grid size-80 place-items-center sm:size-[28rem]">
               <img
                 key={activeCookie.id}
                 src={activeCookie.image}

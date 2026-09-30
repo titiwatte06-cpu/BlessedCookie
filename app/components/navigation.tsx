@@ -28,20 +28,55 @@ export default function Navigation() {
 
   {/* ส่วนล่าง - พื้นขาว */}
   <div className="bg-[#fffaf2]/95 backdrop-blur">
-    <div className="h-17" />
-  </div>
-
-  {/* กล่องสีขาวลอย - อ้างอิงจาก header ทั้งก้อน */}
-  <div className="absolute left-1/2 top-0 w-fit -translate-x-1/2 rounded bg-white px-4 py-5 shadow-lg sm:py-7">
-    <nav aria-label="เมนูหลัก" className="flex  items-center justify-center">
-    
-    <img
-            src="/image/blessedcookie-logo.png"
-            alt="Blessed Cookie"
-            className="h-20 w-auto object-contain"
-          />
+    <div className="mx-auto hidden h-17 max-w-6xl grid-cols-[1fr_14rem_1fr] items-center px-6 sm:grid">
+      <nav aria-label="เมนูหลักด้านซ้าย" className="flex items-center justify-around gap-4 text-sm font-semibold text-[#4d3025]">
+        {links.slice(0, 2).map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            aria-current={pathname === link.href ? "page" : undefined}
+            className={`whitespace-nowrap py-2 transition-colors hover:text-[#b66d3d] ${pathname === link.href ? "border-b-2 border-[#f5c96a] text-[#9a5931]" : ""}`}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+      <div aria-hidden="true" />
+      <nav aria-label="เมนูหลักด้านขวา" className="flex items-center justify-around gap-4 text-sm font-semibold text-[#4d3025]">
+        {links.slice(2).map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            aria-current={pathname === link.href ? "page" : undefined}
+            className={`whitespace-nowrap py-2 transition-colors hover:text-[#b66d3d] ${pathname === link.href ? "border-b-2 border-[#f5c96a] text-[#9a5931]" : ""}`}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+    <nav aria-label="เมนูหลัก" className="flex h-28 items-end justify-center gap-3 px-3 pb-3 text-xs font-semibold text-[#4d3025] sm:hidden">
+      {links.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-current={pathname === link.href ? "page" : undefined}
+          className={`whitespace-nowrap py-2 transition-colors hover:text-[#b66d3d] ${pathname === link.href ? "border-b-2 border-[#f5c96a] text-[#9a5931]" : ""}`}
+        >
+          {link.label}
+        </Link>
+      ))}
     </nav>
-    
+  </div>
+  {/* กล่องโลโก้สีขาวแบบเดิม */}
+  <div className="absolute left-1/2 top-0 w-fit -translate-x-1/2 rounded bg-white px-4 py-5 shadow-lg sm:py-7">
+    <nav aria-label="โลโก้ Blessed Cookie" className="flex items-center justify-center">
+      <img
+        src="/image/blessedcookie-logo.png"
+        alt="Blessed Cookie"
+        className="h-20 w-auto object-contain"
+      />
+    </nav>
   </div>
 </header>
   );
